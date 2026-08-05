@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void: #09050f;
+  --surface: #120a1e;
+  --surface-2: #1a1029;
+  --border: rgba(168, 130, 255, 0.14);
+  --border-strong: rgba(168, 130, 255, 0.34);
+  --violet: #a855f7;
+  --violet-soft: #7c3aed;
+  --violet-strong: #c9a4ff;
+  --violet-glow: rgba(155, 92, 246, 0.25);
+  --lilac: #b6a5dd;
+  --bone: #f2eefb;
+  --muted: #9689ac;
+  --dim: #5b5170;
+  --grid-line: rgba(168, 130, 255, 0.055);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--void);
+  color: var(--bone);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--violet-soft);
+  color: var(--bone);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border-radius: 999px;
+  border: 2px solid var(--void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--violet-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no-cursor {
+  cursor: none;
+}
+
+.bg-grid {
+  background-image: var(--tw-gradient-stops, none);
+}
+
+.text-glow {
+  text-shadow: 0 0 24px var(--violet-glow);
+}
+
+.card-scan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--violet-glow) 45%,
+    transparent 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+.group:hover .card-scan::after {
+  opacity: 0.7;
+  animation: scan 1.8s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
